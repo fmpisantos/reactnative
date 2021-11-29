@@ -2,5 +2,5 @@
     "@pages": "./src/pages",
     "@components": "./src/components",
     "@styles": "./src/styles",
-    "@redux":"./src/redux"
+    "@store":"./src/store"
 }

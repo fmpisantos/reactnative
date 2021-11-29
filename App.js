@@ -14,9 +14,9 @@ import About from '@pages/About';
 
 // Store
 import { Provider } from 'react-redux'
-import store from './src/redux/store'
+import store from '@store/store'
 import { useSelector, useDispatch } from 'react-redux';
-import { increment, incrementByAmount, state } from './src/redux/counter';
+import { increment, incrementByAmount, state } from '@store/counter';
 
 const App = () => {
 	const navigationRef = useNavigationContainerRef();
