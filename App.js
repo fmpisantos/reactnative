@@ -12,8 +12,21 @@ import About from '@pages/About';
 
 // Components
 
-export default function App() {
+// Store
+import { Provider } from 'react-redux'
+import store from './src/redux/store'
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, incrementByAmount, state } from './src/redux/counter';
+
+const App = () => {
 	const navigationRef = useNavigationContainerRef();
+	const counter = useSelector(state);
+	const dispatch = useDispatch();
+	const _increment = () => dispatch(increment());
+	const _incrementByAmount = (amount) => {
+		dispatch(incrementByAmount(amount));
+	};
+
 	return (
 		<NavigationContainer ref={navigationRef} headerMode={null}>
 			<Stack.Navigator
@@ -21,15 +34,39 @@ export default function App() {
 					headerShown: false,
 					tabBarStyle: { display: 'none' }
 				}}
-        initialRouteName="home"
+				initialRouteName="Home"
 			>
-				<Stack.Screen name="home" path="/">
-					{(props) => <Home {...props} style={style} />}
+				<Stack.Screen name="Home">
+					{(props) => (
+						<Home
+							{...props}
+							counter={counter}
+							increment={_increment}
+							incrementByAmount={_incrementByAmount}
+							style={style}
+						/>
+					)}
 				</Stack.Screen>
-				<Stack.Screen name="about" path="/about">
-					{(props) => <About {...props} style={style} />}
+				<Stack.Screen name="About">
+					{(props) => (
+						<About
+							{...props}
+							counter={counter}
+							increment={_increment}
+							incrementByAmount={_incrementByAmount}
+							style={style}
+						/>
+					)}
 				</Stack.Screen>
 			</Stack.Navigator>
 		</NavigationContainer>
+	);
+};
+
+export default function AppWrapper() {
+	return (
+		<Provider store={store}>
+			<App /> 
+		</Provider>
 	);
 }
