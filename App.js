@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 // Styles
-import style from '@styles/style';
+import styles from '@styles/style';
 
 //Pages
 import Home from '@pages/Home';
